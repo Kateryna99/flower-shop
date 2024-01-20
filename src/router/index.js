@@ -1,26 +1,70 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+//import informationView from "@/views/MainPages/cart/InformationView";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: () => import('../views/MainPages/HomePage.vue')
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: '/our-story',
+    name: 'OurStoryPage',
+    component: () => import('../views/MainPages/OurStoryPage.vue')
   },
+  {
+    path: '/shop',
+    name: 'ShopPage',
+    component: () => import('../views/MainPages/ShopPage.vue')
+  },
+  {
+    path: '/flower-subscription',
+    name: 'FlowerSubscriptionPage',
+    component: () => import('../views/MainPages/FlowerSubscriptionPage.vue')
+  },
+  {
+    path: '/category/:category',
+    name: 'CategoryPage',
+    component: () => import('../views/MainPages/CategoryPage.vue')
+  },
+  {
+    path: '/product-collection/:productSubtitle/:productId',
+    name: 'ProductPage',
+    component: () => import('../views/MainPages/ProductPage.vue')
+  },
+  {
+    path: '/cart',
+    name: 'CartPage',
+    redirect: '/cart/information',
+    component: () => import('../views/MainPages/CartPage.vue'),
+    children: [
+      {
+        path:'information',
+        name: 'CartInfo',
+        component: () => import('../views/MainPages/cart/InformationView.vue'),
+      },
+      {
+        path: 'payment',
+        name: 'CartPayment',
+        component: () => import('../views/MainPages/cart/PaymentView.vue')
+      },
+      {
+        path: 'shipping',
+        name: 'CartShipping',
+        component: () => import('../views/MainPages/cart/ShippingView.vue')
+      }
+    ]
+  }
+
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.afterEach(() => {
+  window.scrollTo(0, 0);
 });
 
 export default router;

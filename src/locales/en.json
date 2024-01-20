@@ -1,0 +1,213 @@
+{
+  "pages": {
+    "home": {
+      "main": {
+        "titles": {
+          "WhyUsTitle": "Why choose us ?",
+          "letsTalkTitle": "Let's talk",
+          "stylishBouquetsTitle": "Stylish bouquets by florists",
+          "deliveryTitle": "On-time delivery",
+          "paymentTitle": "Safe payment",
+          "subscriptionTitle": "Subscription by your needs",
+          "toContactUsTitle": "To contact us",
+          "phoneTitle": "Phone",
+          "addressTitle": "Address",
+          "followUsTitle": "Follow Us",
+          "serviceTitle": "Our Service",
+          "flowerSubscriptionTitle": "Flower Subscription",
+          "eventAndWeddingTitle": "Wedding & Event Decor",
+          "reviewTitle": "Our Clients say",
+          "generalEnquiry": "General Enquiry",
+          "title": "Stockholm Flowers"
+        },
+        "text": {
+          "bannerText": "Experience the joy of giving with our modern floral studio. Order online and send fresh flowers, plants and gifts today.",
+          "ourStoryText": "We are a modern local floral studio, which specializes in the design and delivery of unique bouquets. We have the best florists who carefully select each look, our studio cooperates directly with farms for growing different flowers, so we always have fresh flowers, which are collected by our florists in exquisite bouquets. We have a collection of fresh bouquets, collections of dried bouquets, house plants, as well as fragrant candles from luxury brands to create the perfect atmosphere. Make someone's day amazing by sending flowers, plants and gifts the same or next day. Ordering flowers online has never been easier.",
+          "stylishBouquetsText": "At our floral studio, our professional florists craft the most elegant and stylish bouquets using only the freshest and highest quality materials available. We stay up-to-date with the latest floral design trends and offer unique arrangements that are sure to impress. Let us brighten up your day with our stunning bouquets and same-day delivery service.",
+          "deliveryText": "Never miss a moment with our on-time flower delivery service. Our couriers will deliver your bouquet personally, without boxes, to ensure it arrives in perfect condition. Trust us to deliver your thoughtful gift reliably.",
+          "paymentText": "You can feel secure when placing an order with us, as we use industry-standard security measures to protect your payment information. Your transaction will be safe and hassle-free, so you can shop with confidence.",
+          "subscriptionText": "With our subscription service tailored to your specific needs, you can enjoy the convenience of having beautiful bouquets delivered straight to your door at regular intervals. Our flexible service is perfect for busy individuals or those who want to ensure they always have fresh flowers on hand. You'll save time and money with this hassle-free solution to your floral needs.",
+          "letsTalkText": "Enter your number and we'll call you back ASAP to help you with any questions or to place an order",
+          "workingHoursText": "OPENING HOURS: 8 TO 11 P.M.",
+          "addressText": "17 Gatan Street, Stockholm",
+          "flowerSubscriptionText": "Experience the convenience and savings of regular flower deliveries with our flexible subscription service - up to 30% more profitable than one-time purchases.",
+          "eventAndWeddingText": "Let our team of expert florists and designers create stunning, on-trend floral décor for your special day. Trust us to bring your vision to life.",
+          "reviews": {
+            "firstReview": {
+              "text": "I love the flowers, they are beautiful and the delivery was fast!",
+              "name": "John Doe"
+            },
+            "secondReview": {
+              "text": "Ordered flowers online and they were the best bouquet! Impressed everyone around. Highly recommend this flower shop!",
+              "name": "Ronald Richards"
+            },
+            "thirdReview": {
+              "text": "Flower subscriptions revolutionized my Stockholm hotel! Conveniently customize and receive fresh bouquets regularly. Highly recommended for hassle-free floral arrangements!",
+              "name": "Jane Smith"
+            }
+          }
+        },
+        "subtitles": {
+          "reviewsSubtitle": "Reviews"
+        }
+      }
+    },
+    "product": {
+      "productOptions": {
+        "quantity": "Quantity",
+        "combination": "Excellent Combination with:",
+        "price": {
+          "priceTitle": "Price options:",
+          "fullPrice": "One time purchase. Price $",
+          "discountPrice": "Subscribe now, and save 25% on this order."
+        }
+      },
+      "productTitles": {
+        "youMayAlsoLike": "You may also like..."
+      }
+    },
+    "flowerSubscription": {
+      "subscriptionTitles": {
+        "mainTitle": "Flower Subscription",
+        "howDoesItWork": "How does it work?",
+        "planSelection": "Selecting a Plan",
+        "choosePlan": "Choose a plan",
+        "frequencyAndDuration": "Frequency and Duration",
+        "payOnce": "Pay once",
+        "howOftenYouWantDelivery": "How often do you want flowers delivered ?",
+        "howManyYouWantDelivery": "How many deliveries would you like ?",
+        "subscriptionFAQ": "Subscription FAQ"
+      },
+      "subscriptionSubtitles": {
+        "forYourself": "For yourself",
+        "asAGift": "As a gift",
+        "forBusiness": "For business",
+        "buildYourSubscription": "Build your subscription"
+      },
+      "subscriptionTexts": {
+        "forYourselfText": "The perfect way to keep your home fresh and beautiful. Get a regular delivery of stunning bouquets straight to your doorstep without lifting a finger. Enjoy the beauty and fragrance of fresh flowers hassle-free!",
+        "asAGiftText": "Give a special gift to a loved one or a friend. Order flowers as a gift for a special occasion. Enjoy the beauty and fragrance of fresh flowers hassle-free!",
+        "forBusinessText": "Is a great way to create a pleasant atmosphere and leave a good impression on your guests and customers. Fresh floral arrangements will improve the aesthetic image of your business, and our service guarantees timely replacement without extra care or effort on your part.",
+        "planText": "Select the subscription plan that suits you best from our three bouquet designs: classic, seasonal, and deluxe. Each plan comes with a designer vase, free delivery, and a discount of up to 30%. Our seasonal and deluxe plans also include a luxurious scented candle to enhance the ambiance.",
+        "frequencyAndDurationText": "Choose delivery frequency: once a week, every two weeks, or once a month. Then, select your subscription duration from 3 to 12 months. Enjoy savings with a longer subscription. We understand that every customer has different needs, and we aim to provide flexible subscription options that cater to your specific preferences.",
+        "payOnceText": "After entering your contact and delivery information and paying for your subscription, you can sit back and relax, knowing that you have secured a regular supply of fresh, stunning flowers for yourself or your loved ones",
+        "howOftenYouWantDeliveryText": "Select the delivery frequency",
+        "howManyYouWantDeliveryText": "Select the subscription duration"
+      },
+      "subscriptionButtons": {
+        "monthly": "Monthly",
+        "biweekly": "Bi-weekly",
+        "weekly": "Weekly"
+      }
+    },
+    "aboutUs": {
+      "aboutUsTitles": {
+          "foundersPassion": "Our Founder's Passion",
+        "expertlyCraftedBouquets": "Expertly Crafted Bouquets",
+        "bouquetsGiftsAmbiance": "Bouquets, Gifts & Ambiance",
+        "everydaySpecial": "Making Every Day Special",
+        "discoverOurBouquets": "Discover Our Beautiful Bouquets"
+      },
+      "aboutUsTexts": {
+          "foundersPassionText": "Stockholm LuxBouquets was founded in 2010 by Kamilla Prytko with the goal of bringing unique and exquisite bouquets to the people of Stockholm. Kamilla has always had a passion for flowers and design, and his vision was to create a local floral studio that would specialize in the creation and delivery of fresh, beautiful, and distinctive bouquets.",
+        "expertlyCraftedBouquetsText": "At Stockholm LuxBouquets, we take pride in our team of talented and experienced florists who carefully select each bloom, ensuring that only the freshest and most stunning flowers make it into our bouquets. We work directly with farms to source the highest quality flowers, and our skilled florists expertly craft each bouquet to perfection.",
+        "bouquetsGiftsAmbianceText": "In addition to our stunning bouquets, we also offer a collection of dried bouquets, house plants, and fragrant candles from luxury brands to create the perfect ambiance. We believe that sending flowers, plants, and gifts should be easy and stress-free, which is why we offer same or next-day delivery throughout Stockholm.",
+        "everydaySpecialText": "Our mission is simple: to make every day special and memorable for our customers. We are dedicated to providing the highest quality flowers, exceptional customer service, and a seamless online experience that will make you feel confident and satisfied with your purchase.Thank you for choosing Stockholm LuxBouquets. We look forward to bringing joy and happiness to your life with our beautiful bouquets and gifts.",
+        "discoverOurBouquetsText": "Explore our collection of exquisite bouquets and surprise your loved ones with the perfect gift. Click the button below to start shopping"
+      }
+    },
+    "cart": {
+      "cartTitles": {
+          "information": "Information",
+        "shipping": "Shipping",
+        "payment": "Payment",
+        "contactInformation": "Contact Information",
+        "orderSummary": "Order Summary",
+        "subtotal": "Subtotal",
+        "total": "Total",
+        "secureCheckout": "Secure Checkout",
+        "shippingDetails": "Shipping Details",
+        "frequency": "Frequency"
+      },
+      "cartText": {
+          "discount": "If you have our gift card, enter the code to get discounts"
+      },
+      "placeholder": {
+        "name": "Your Name",
+        "email": "Your Email",
+        "phone": "Your Phone Number",
+        "giftCard": "Gift Card",
+        "recipientName": "Recipient Name",
+        "recipientPhone": "Recipient Phone number",
+        "dateOfDelivery": "Data of Delivery",
+        "deliveryTime": "Delivery Time",
+        "street": "Street",
+        "apartment": "Apartment Number",
+        "cardNumber": "Card Number",
+        "cvv": "CVV code",
+        "MMYY": "MM/YY"
+      }
+    }
+  },
+  "categories": {
+    "chooseCategory": "Choose a Category",
+    "freshFlowers": "Fresh Flowers",
+    "driedFlowers": "Dried Flowers",
+    "livePlants": "Live Plants",
+    "aromaCandles": "Aroma Candles",
+    "fresheners": "Fresheners",
+    "allProducts": "All Products"
+  },
+  "footer": {
+    "footerText": "Remember to offer beautiful flowers from Stockholm Florist Studio Valentines Day, Mothers Day, Christmas... Reminds you 7 days before. No spam or sharing your address",
+    "footerTitles": {
+      "shipping": "Shipping & returns",
+      "privacyPolicy": "Privacy Policy",
+      "termsAndConditions": "Terms & Conditions"
+    },
+    "placeholder": "Enter your email"
+  },
+  "menu": {
+    "shop": "Shop",
+    "contact": "Contacts",
+    "signIn": "Sign In",
+    "cart": "Cart",
+    "home": "Home"
+  },
+  "buttons": {
+    "shopNow": "Shop now",
+    "learnMore": "Learn more",
+    "reachUs": "Reach us",
+    "subscribe": "Subscribe now",
+    "inquire": "Inquire now",
+    "reviews": "Read Reviews",
+    "remind": "Remind",
+    "addToBasket": "Add to basket",
+    "select": "Select",
+    "explore": "Explore plans",
+    "bookCall": "Book a call",
+    "continue": "Continue",
+    "makeAPurchase": "Make a purchase",
+    "apply": "Apply"
+  },
+  "mainTitles": {
+    "ourStory": "Our Story",
+    "title": "Stockholm Flowers",
+    "aboutUsTitle": "About Us",
+    "blog": "Blog",
+    "service": "Service",
+    "flowerSubscription": "Flower Subscription",
+    "eventAndWedding": "Wedding & Event Decor"
+  },
+  "mainSubtitles": {
+    "mainTitleSubtitle": "Discover Uniquely Crafted Bouquets and Gifts for Any Occasion: Spread Joy with Our Online Flower Delivery Service"
+  },
+  "extra": {
+    "titles": {
+        "thankYou": "Thank you!"
+    },
+    "texts": {
+      "thankYouText": "Our team will contact you as soon as possible!"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('@/assets/style/fonts/font_families/monserrat/Montserrat-Regular/Montserrat-Regular.eot');
+    src: url('@/assets/style/fonts/font_families/monserrat/Montserrat-Regular/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-Regular/Montserrat-Regular.woff2') format('woff2'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-Regular/Montserrat-Regular.woff') format('woff'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-Regular/Montserrat-Regular.ttf') format('truetype'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-Regular/Montserrat-Regular.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('@/assets/style/fonts/font_families/monserrat/Montserrat-SemiBold/Montserrat-SemiBold.eot');
+    src: url('@/assets/style/fonts/font_families/monserrat/Montserrat-SemiBold/Montserrat-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-SemiBold/Montserrat-SemiBold.woff2') format('woff2'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-SemiBold/Montserrat-SemiBold.woff') format('woff'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-SemiBold/Montserrat-SemiBold.ttf') format('truetype'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-SemiBold/Montserrat-SemiBold.svg') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('@/assets/style/fonts/font_families/monserrat/Montserrat-Medium/Montserrat-Medium.eot');
+    src: url('@/assets/style/fonts/font_families/monserrat/Montserrat-Medium/Montserrat-Medium.eot?#iefix') format('embedded-opentype'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-Medium/Montserrat-Medium.woff2') format('woff2'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-Medium/Montserrat-Medium.woff') format('woff'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-Medium/Montserrat-Medium.ttf') format('truetype'),
+    url('@/assets/style/fonts/font_families/monserrat/Montserrat-Medium/Montserrat-Medium.svg') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
