@@ -396,8 +396,7 @@ body {
 }
 @media (max-width: 991px) {
   .section__block {
-    position: unset;
-    top: unset;
+    position: relative;
   }
 }
 .section__wrapper {

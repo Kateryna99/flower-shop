@@ -433,8 +433,7 @@ $whiteMain: #FFFFFF;
     top: 0;
 
     @media (max-width: 991px) {
-      position: unset;
-      top: unset;
+      position: relative;
     }
   }
 
