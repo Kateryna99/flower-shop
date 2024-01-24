@@ -3,14 +3,14 @@
     <div class="FAQ-item__wrapper" :class="{'FAQ-item__wrapper--active': isClicked}" @click="changeClass">
       <div class="FAQ-item__block">
         <div class="FAQ-item__component">
-          <h3 class="FAQ-item__title">{{infoObj.title[getCurrentLanguage]}}</h3>
+          <h3 class="FAQ-item__title">{{ infoObj.title[getCurrentLanguage] }}</h3>
         </div>
         <div class="FAQ-item__component">
           <div class="FAQ-item__icon"></div>
         </div>
       </div>
       <div class="FAQ-item__answer">
-        <p class="FAQ-item__text">{{infoObj.answer[getCurrentLanguage]}}</p>
+        <p class="FAQ-item__text">{{ infoObj.answer[getCurrentLanguage] }}</p>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     changeClass() {
-      this.isClicked = !this.isClicked
+      this.isClicked = !this.isClicked;
     }
   }
 };
@@ -72,7 +72,9 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
   }
+
   &__answer {
     height: 0;
     overflow: hidden;
@@ -86,6 +88,11 @@ export default {
 
   &__title {
     font-size: 28px;
+
+
+    @media (max-width: 1024px) {
+      font-size: 22px;
+    }
   }
 
   &__icon {

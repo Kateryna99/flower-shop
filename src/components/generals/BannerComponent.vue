@@ -49,6 +49,12 @@ export default {
 
       background-color: rgba(0, 0, 0, .3);
     }
+
+    @media (max-width: 991px) {
+      border-bottom: 1px solid #121212;
+
+      height: 50vh;
+    }
   }
 
   &__content {

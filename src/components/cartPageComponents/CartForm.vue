@@ -45,6 +45,17 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 40px;
+
+    border-left: 1px solid #121212;
+    
+    @media (max-width: 991px) {
+      border-bottom: 1px solid #121212;
+      
+    }
+    
+    @media (max-width: 510px) {
+      padding: 40px 15px;
+    }
   }
 
   &__header {

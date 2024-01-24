@@ -9,7 +9,7 @@
         <div class="form__block">
           <h3 class="section__title section__title--small">{{product.title[getCurrentLanguage]}} - ${{product.price}}</h3>
         </div>
-        <div class="form__block">
+        <div class="form__block form__block--column">
           <p v-if="product.type" class="product-page__type">{{product.type}}</p>
           <p class="product-page__text">{{product.description[getCurrentLanguage]}}</p>
         </div>
@@ -156,6 +156,11 @@ export default {
   &__block {
     display: flex;
     align-items: center;
+  }
+  &__block--column{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }
 

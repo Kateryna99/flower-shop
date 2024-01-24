@@ -1,49 +1,41 @@
 import DbOperations from '@/store/helpers/DbOperations';
 const collectionDB = new DbOperations('users');
+import {useAuthStore} from "./auth.js";
 import { defineStore } from 'pinia';
 
-export const useUsersStore = defineStore('users', () => {
-    const state = {
-        usersList: null,
-        currentUser: null,
-    };
+export const useUsersStore = defineStore('users', {
+  state: () => ({
+    authStore: useAuthStore(),
+    permissions: {},
+  }),
 
-    const getters = {
-        getUsersList: () => state.usersList,
-        getCurrentUser: () => state.currentUser,
-    };
-
-    const methods = {
-        async loadUsersList() {
-            state.usersList = await collectionDB.loadItemsList();
-        },
-
-        async loadUserById(userId) {
-            if (userId) {
-                state.currentUser = await collectionDB.getItemById(userId);
-                return state.currentUser;
-            }
-        },
-
-        async addUser(userData) {
-            state.currentUser = await collectionDB.addItem(userData);
-        },
-
-        async addUserWithCustomId({ id, data }) {
-            const userObj = await this.loadUserById(id);
-            if (!userObj?.email) {
-                state.currentUser = await collectionDB.addItemWithCustomId(id, data);
-            }
-        },
-
-        async updateUser({ id, data }) {
-            state.currentUser = await collectionDB.updateItem(id, data);
-        },
-
-        async deleteUser(userData) {
-            state.currentUser = await collectionDB.deleteItem(userData);
-        },
-    };
-
-    return { state, getters, methods };
+  getters: {
+    userPermissions: (state) => state.permissions,
+  },
+  actions: {
+    async addUser(user) {
+      try {
+        this.setError(null);
+        this.setLoading(true);
+        await collectionDB.addItem(user);
+        await this.loadList();
+      } catch (error) {
+        this.setError(error);
+      } finally {
+        this.setLoading(false);
+      }
+    },
+    setPermissions(permissions) {
+      this.permissions = permissions;
+    },
+    clearPermissions() {
+      this.permissions = {};
+    },
+    loadUserPermissions(userId) {
+      //userId ??= this.authStore.getUser.uid
+      collectionDB.getItemById(userId).then((permissions) => {
+        this.setPermissions(permissions);
+      });
+    }
+  }
 });

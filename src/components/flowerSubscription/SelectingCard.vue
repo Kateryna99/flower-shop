@@ -55,7 +55,7 @@ export default {
 .selecting-card {
   &__wrapper {
     border: 1px solid #bebbbb;
-
+position: relative;
   }
 
   &__block {

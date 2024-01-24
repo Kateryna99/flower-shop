@@ -1,5 +1,5 @@
 <template>
-    <form class="cart-form-item section">
+    <form class="cart-form-item">
       <div class="cart-form-item__wrapper">
         <slot name="form-header"></slot>
           <slot name="form-main"></slot>

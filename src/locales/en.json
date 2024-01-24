@@ -171,6 +171,7 @@
     "shop": "Shop",
     "contact": "Contacts",
     "signIn": "Sign In",
+    "signOut": "Sign Out",
     "cart": "Cart",
     "home": "Home"
   },
@@ -188,7 +189,8 @@
     "bookCall": "Book a call",
     "continue": "Continue",
     "makeAPurchase": "Make a purchase",
-    "apply": "Apply"
+    "apply": "Apply",
+    "back": "Back"
   },
   "mainTitles": {
     "ourStory": "Our Story",
@@ -207,7 +209,16 @@
         "thankYou": "Thank you!"
     },
     "texts": {
-      "thankYouText": "Our team will contact you as soon as possible!"
+      "thankYouText": "Our team will contact you as soon as possible!",
+      "pageNotFound": "Opsssss... Go back, this page is dangerous !!!"
     }
+  },
+  "login": {
+    "login": "Login",
+    "name": "Name",
+    "password": "Password",
+    "enterWithGoogle": "Sign in with Google",
+    "enter": "Enter",
+    "message": "Please sign in before buy a flower subscription"
   }
 }

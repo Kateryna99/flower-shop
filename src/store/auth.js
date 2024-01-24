@@ -1,96 +1,88 @@
 import { defineStore } from 'pinia'
-import { useUsersStore } from './users'
-import authOperations from 'src/store/helpers/GoogleAuthOperations.js'
+import {auth} from "@/firebase-config";
+import { useUsersStore } from './users.js'
+import { GoogleAuthProvider, signInWithPopup, signInWithCredential, signOut } from 'firebase/auth'
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         usersStore: useUsersStore(),
-        user: null
+        user: null,
+        error: null
     }),
 
     getters: {
         getUser: (state) => state.user
     },
-
     actions: {
-        async signUpWithWithEmailAndPassword(email, password) {
+        setUser(user) {
+            this.user = user
+        },
+        setError(error) {
+            this.error = error
+        },
+
+        async saveLoginUserData(loginResult) {
             try {
-                const res = await authOperations.signUpWithWithEmailAndPassword({ email, password })
+                const user = loginResult?.user;
+                this.setUser(user);
 
-                this.user = res
+                const credential = GoogleAuthProvider.credentialFromResult(loginResult);
+                localStorage.setItem('authCredential', JSON.stringify(credential));
 
-                await this.usersStore.addUserWithCustomId({
-                    id: this.user?.uid,
-                    data: {
-                        email,
-                        permissions: {
-                            create: false,
-                            read: true,
-                            update: false,
-                            delete: false
-                        }
-                    }
+                await this.usersStore.loadUserPermissions(user.uid);
+            } catch (error) {
+                console.error(error);
+                this.setError(error);
+                throw error;
+            }
+        },
+
+        async loginWithGoogle() {
+            try {
+                const provider = new GoogleAuthProvider();
+                const loginResult = await signInWithPopup(auth, provider);
+                await this.saveLoginUserData(loginResult);
+                await this.usersStore.addUser({
+                    name: this.user.displayName,
+                    email: this.user.email
                 })
             } catch (error) {
-                // handle error
+                this.setError(error);
             }
         },
+        async loginWithCredential() {
+            return new Promise((resolve, reject) => {
+                let credential = localStorage.getItem('authCredential');
 
-        async signInWithWithEmailAndPassword(email, password) {
+                if (credential) {
+                    credential = JSON.parse(credential);
+                    credential = GoogleAuthProvider.credential(credential.idToken);
+
+                    signInWithCredential(auth, credential)
+                      .then(async (loginResult) => {
+                          await this.saveLoginUserData(loginResult);
+                          resolve(loginResult);
+                      })
+                      .catch((error) => {
+                          console.error(error);
+                          this.setError(error);
+                          reject(false);
+                      });
+                } else {
+                    resolve(false);
+                }
+            });
+        },
+        async logout() {
             try {
-                const res = await authOperations.signInWithWithEmailAndPassword({ email, password })
-
-                this.user = res
-
-                await this.usersStore.loadUserById(this.user.uid)
-
-                return res
+                await signOut(auth);
+                localStorage.removeItem('authCredential');
+                this.setUser(null);
+               await this.usersStore.clearPermissions();
             } catch (error) {
-                // handle error
-                throw error
+                this.setError(error);
             }
         },
 
-        async loginWithGoogleAccount() {
-            try {
-                const res = await authOperations.loginWithGoogleAccountPopup()
-
-                this.user = res
-
-                await this.usersStore.addUserWithCustomId({
-                    id: this.user?.uid,
-                    data: {
-                        email: this.user?.email,
-                        permissions: {
-                            create: false,
-                            read: true,
-                            update: false,
-                            delete: true
-                        }
-                    }
-                })
-
-                await this.usersStore.loadUserById(this.user.uid)
-
-                return res
-            } catch (error) {
-                // handle error
-                throw error
-            }
-        },
-
-        async logOut() {
-            try {
-                await authOperations.logout()
-
-                this.usersStore.currentUser = null
-            } catch (error) {
-                // handle error
-            }
-        },
-
-        async getAuthData() {
-            return this.user
-        }
     }
 })

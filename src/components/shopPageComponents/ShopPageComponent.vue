@@ -58,6 +58,11 @@ export default {
     justify-content: center;
     align-items: center;
     //height: 100%;
+
+    @media (max-width: 991px) {
+      border-bottom: 1px solid #121212;
+      min-height: 60vh;
+    }
   }
 }
 

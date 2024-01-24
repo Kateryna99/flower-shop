@@ -3,8 +3,11 @@
     <header class="header">
       <div class="header__wrapper">
         <div class="header__container">
-          <nav class="nav nav-menu">
-            <div class="nav-menu__wrapper">
+          <nav class="nav nav-menu" :class="{'nav-menu--active':menuShow}">
+            <div  class="nav-menu__wrapper" :class="{'nav-menu__wrapper--active':menuShow}">
+              <div  class="nav-menu__item nav-menu__block-none">
+                <span class="nav-menu__icon icon-close" @click="closeMenu"></span>
+              </div>
               <div class="nav-menu__block">
                 <div class="nav-menu__item nav-menu__item--right">
                   <router-link v-if="getCurrentRouteName==='home'" class="nav__link" to="/shop">
@@ -25,20 +28,21 @@
               </div>
               <div class="nav-menu__block">
                   <div class="nav-menu__language">
-                    <div v-if="getCurrentLanguage==='en'" class="nav-menu__flag" @click="changeLanguage('ua')">
-                      <img src="@/assets/img/home/english_flag.png" alt="" class="nav-menu__img">
-                      <p  class="nav-menu__text">EN</p>
-                    </div>
-                    <div v-else class="nav-menu__flag" @click="changeLanguage('en')">
-                      <img src="@/assets/img/home/ukraine_flag.svg" alt="" class="nav-menu__img">
-                      <p class="nav-menu__text">UA</p>
+                    <div class="nav-menu__flag" @click="changeLanguage()">
+                      <img :src="getCurrentLanguageFlag" alt="" class="nav-menu__img">
+                      <p v-if="getCurrentLanguage==='en'"  class="nav-menu__text">EN</p>
+                      <p v-else class="nav-menu__text__text">UA</p>
                     </div>
                   </div>
                 <div class="nav-menu__item nav-menu__item--left">
-                  <router-link class="nav__link" to="/">
+                  <router-link v-if="!getUser"  class="nav__link" to="/login">
                     <div class="nav__text nav__text--up">{{ $t('menu.signIn') }}</div>
                     <div class="nav__text nav__text--down">{{ $t('menu.signIn') }}</div>
                   </router-link>
+                  <a v-else href="#" class="nav__link" @click="logoutUser">
+                    <div class="nav__text nav__text--up">{{ $t('menu.signOut') }}</div>
+                    <div class="nav__text nav__text--down">{{ $t('menu.signOut') }}</div>
+                  </a>
                 </div>
                 <div class="nav-menu__item nav-menu__item--left">
                   <router-link class="nav__link" to="/cart">
@@ -47,8 +51,46 @@
                   </router-link>
                 </div>
               </div>
+              <div class="nav-menu__block-none nav-menu__item">
+                <div class="socials">
+                  <div class="socials__wrapper">
+                    <div class="socials__item">
+                      <a href="" class="socials__link">
+                        <span class="socials__icon icon icon-instagram"></span>
+                      </a>
+                    </div>
+                    <div class="socials__item">
+                      <a href="" class="socials__link">
+                        <span class="socials__icon icon icon-pinterest"></span>
+                      </a>
+                    </div>
+                    <div class="socials__item">
+                      <a href="" class="socials__link">
+                        <span class="socials__icon icon icon-facebook"></span>
+                      </a>
+                    </div>
+                    <div class="socials__item">
+                      <a href="" class="socials__link">
+                        <span class="socials__icon icon icon-twitter"></span>
+                      </a>
+                    </div>
+                    <div class="socials__item">
+                      <a href="" class="socials__link">
+                        <span class="socials__icon icon icon-telegram"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </nav>
+          <div class="burger nav-menu__block-none" @click="openBurgerMenu">
+            <div class="burger__wrapper">
+              <div class="burger__item"></div>
+              <div class="burger__item"></div>
+              <div class="burger__item"></div>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -64,7 +106,7 @@
                 <p class="footer-form__text">{{ $t('footer.footerText') }}</p>
               </div>
               <div class="footer-form__main">
-                <input v-model="userEmail" type="email" :placeholder="$t('footer.placeholder')" class="footer-form__input">
+                <input v-model="userEmail" type="email" :placeholder="$t('footer.placeholder')" class="input">
               </div>
               <div class="footer-form__footer">
                 <button class="button" :class="{'button--disabled':!isInputEmpty}" :disabled="!isInputEmpty" @click.prevent="showPopUp">{{ $t('buttons.remind') }}</button>
@@ -100,7 +142,7 @@
               <div class="footer__item footer__item--gap">
                 <h4 class="footer__title">{{ $t('pages.home.main.titles.followUsTitle') }}</h4>
                 <div class="socials">
-                  <div class="socials__wrapper">
+                  <div class="socials__wrapper socials__wrapper--start">
                     <div class="socials__item">
                       <a href="" class="socials__link">
                         <span class="socials__icon icon icon-instagram"></span>
@@ -244,8 +286,9 @@
 
 <script>
 import {useHomeStore} from "@/store/modules/general.js";
+import {mapState,mapActions} from "pinia";
+import {useAuthStore} from "@/store/auth";
 import PopUp from "@/components/generals/Pop-up.vue";
-import {mapActions} from "pinia";
 
 export default {
   name: "MainMasterPage",
@@ -255,10 +298,13 @@ export default {
   data() {
     return {
       userEmail:null,
-      popUpShow: false
+      popUpShow: false,
+      menuShow: false
     }
   },
   computed: {
+    ...mapState(useAuthStore,['getUser']),
+
     getCurrentRouteName() {
       return this.$route.name;
     },
@@ -267,10 +313,16 @@ export default {
     },
     getCurrentLanguage() {
       return this.$i18n.locale
-    }
+    },
+    getCurrentLanguageFlag() {
+      return this.getCurrentLanguage === 'en'
+        ? require('@/assets/img/home/english_flag.png')
+        : require('@/assets/img/home/ukraine_flag.svg');
+    },
   },
   methods: {
     ...mapActions(useHomeStore, ['setScrollToCodeBlock']),
+    ...mapActions(useAuthStore, ['logout']),
 
     showPopUp() {
       this.popUpShow = true;
@@ -284,147 +336,46 @@ export default {
         this.popUpShow = false;
       }
     },
-    changeLanguage(lang) {
-      this.$i18n.locale = lang
+    changeLanguage() {
+      this.$i18n.locale = this.$i18n.locale === 'en' ? 'ua' : 'en';
+
+      if (localStorage.getItem('currentLang') !== this.$i18n.locale) {
+        localStorage.setItem('currentLang', this.$i18n.locale);
+      }
+    },
+    async logoutUser() {
+      await this.logout()
+      window.location.reload()
+    },
+    openBurgerMenu() {
+      this.menuShow = true
+    },
+    closeMenu(){
+      this.menuShow = false
+    },
+    closeMenuOnClick(event){
+      console.log(event.target)
+      if (event.target.classList.contains('nav-menu')) {
+        this.closeMenu()
+      }
     }
   },
   created() {
-    document.addEventListener('click', this.closePopupOnClick);
+    document.addEventListener('click', (event)=>{
+      this.closePopupOnClick(event)
+      this.closeMenuOnClick(event)
+    });
+
+    if(localStorage.getItem('currentLang')){
+      this.$i18n.locale = localStorage.getItem('currentLang');
+    }
   }
 }
 
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  min-height: 100vh;
-  max-width: 100%;
-  width: 100%;
-  position: relative;
 
-  display: flex;
-  flex-direction: column;
-
-  & > .page {
-    flex-grow: 1;
-  }
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 50;
-
-  width: 100%;
-  height: 83px;
-
-
-  &__wrapper {
-
-    background-color: #FFFFFF;
-    border: 1px solid #121212;
-    position: relative;
-  }
-
-  &__container {
-    padding: 0;
-  }
-}
-
-.nav {
-  &__link {
-    height: 20px;
-    overflow: hidden;
-
-
-    &:hover {
-      .nav__text--up {
-        transform: translateY(-20px);
-      }
-
-      .nav__text--down {
-        transform: translateY(-20px);
-        color: #808080;
-      }
-    }
-  }
-
-  &__text {
-    transition: transform 0.2s ease;
-    font-weight: 500;
-  }
-}
-
-.nav-menu {
-  &__wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__block {
-    display: flex;
-    align-items: center;
-
-    max-width: 360px;
-    width: 100%;
-
-
-    position: relative;
-  }
-
-  &__item {
-    max-width: 100%;
-    width: 100%;
-    padding: 32px 24px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: relative;
-
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-
-      height: 100%;
-      width: 1px;
-      background-color: #121212;
-    }
-
-    &--right {
-      &:before {
-        right: 0;
-      }
-    }
-
-    &--left {
-      &:before {
-        left: 0;
-      }
-    }
-  }
-
-  &__language {
-    cursor: pointer;
-
-    position: absolute;
-    left: -100px;
-    top: calc(50% - 15px);
-  }
-  &__flag{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  &__img{
-    width: 30px;
-    height: 30px;
-  }
-}
 
 .page {
 }
@@ -441,6 +392,14 @@ export default {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: auto;
+
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @media (max-width: 570px) {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+
+    }
   }
 
   &__block {
@@ -452,6 +411,14 @@ export default {
 
     &:not(:last-child) {
       border-right: 1px solid #121212;
+    }
+
+    @media (max-width: 991px) {
+      border-bottom: 1px solid #121212;
+    }
+    @media (max-width: 768px) {
+      padding: 40px 15px;
+
     }
   }
 
@@ -492,11 +459,6 @@ export default {
   }
 
   &__main {
-  }
-
-  &__input {
-    border: 1px solid #808080;
-    padding: 16px;
   }
 
   &__footer {

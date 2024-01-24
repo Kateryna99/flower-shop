@@ -1,10 +1,10 @@
 <template>
   <div class="category-card section section--border">
-    <div class="category-card__wrapper section__content">
+    <div class="category-card__wrapper section__content section__content--row">
       <div class="category-card__banner">
         <div class="category-card__block">
           <div class="category-card__item">
-            <h3 class="category-card__title">{{ categoryObj.title }}</h3>
+            <h3 class="section__title section__title--small section__title--center">{{ categoryObj.title }}</h3>
           </div>
           <div class="category-card__item category-card__item--bottom">
             <slot name="text">
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: "BannerTextPage",
   props: {
@@ -44,7 +46,8 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+
 }
 
 </script>

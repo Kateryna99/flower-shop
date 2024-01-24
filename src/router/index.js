@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-//import informationView from "@/views/MainPages/cart/InformationView";
+import HomePage from "@/views/MainPages/HomePage.vue";
+import { useAuthStore } from "@/store/auth";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import('../views/MainPages/HomePage.vue')
+    component: HomePage
   },
   {
     path: '/our-story',
@@ -54,8 +55,21 @@ const routes = [
         component: () => import('../views/MainPages/cart/ShippingView.vue')
       }
     ]
+  },
+  {
+    path: '/login/:message?',
+    name: 'LoginPage',
+    component: () => import('../views/SettingsPages/LoginPage.vue')
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "page-not-found",
+    component: () =>
+      import( "../views/SettingsPages/PageNotFound.vue"),
+    meta: {
+      requiresAuth: false,
+    }
   }
-
 ];
 
 const router = createRouter({
@@ -63,8 +77,30 @@ const router = createRouter({
   routes,
 });
 
-router.afterEach(() => {
-  window.scrollTo(0, 0);
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore();
+
+  const isAuthenticated = authStore.getUser;
+
+    if (!isAuthenticated) {
+      try {
+        await authStore.loginWithCredential();
+      } catch (error) {
+        console.error('Unable to log in with credential:', error);
+        next({ name: 'LoginPage' });
+        return;
+      }
+    }
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+
+
+  next();
 });
+
+
 
 export default router;

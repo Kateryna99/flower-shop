@@ -9,7 +9,7 @@
         <p class="section__text">{{ $t('mainSubtitles.mainTitleSubtitle')}}</p>
       </div>
     </div>
-    <div class="section__content">
+    <div class="section__content section__content--row">
       <div class="banner-block__item banner-block__item--padding-right">
         <div class="banner-block__img">
           <img src="@/assets/img/home/banner_img.jpg" alt="Banner">
@@ -80,12 +80,15 @@ export default {
   &__title {
     font-size: 67px;
     font-weight: 600;
+
+    @media (max-width: 480px) {
+      font-size: 52px;
+    }
   }
 
   &__img {
     max-width: 100%;
     width: 100%;
-    height: 100%;
 
     overflow: hidden;
 

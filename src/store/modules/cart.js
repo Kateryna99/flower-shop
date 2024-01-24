@@ -8,13 +8,16 @@ export const useCartStore = defineStore("cart", {
     cartList: [],
     loading: false,
     error: null,
-    totalPrice: 0
+    totalPrice: 0,
+    userInfo:{},
   }),
   getters: {
     isLoading: (state) => state.loading,
     hasError: (state) => state.error,
     getItemById: (state) => (itemId) => state.cartList.find((item) => item.id === itemId),
     getCartList: (state) => state.cartList,
+    getUserInfo: (state) => state.userInfo,
+    getCartProductByProductId: (state) => (productId) => state.cartList.find((item) => item.productId === productId),
   },
   actions: {
     setError(error) {
@@ -25,6 +28,9 @@ export const useCartStore = defineStore("cart", {
     },
     setFriendsList(list) {
       this.cartList = list;
+    },
+    setUserInfo(category,data){
+      this.userInfo[category] = data
     },
     async loadList() {
       this.setError(null);
@@ -62,6 +68,6 @@ export const useCartStore = defineStore("cart", {
       } finally {
         this.setLoading(false);
       }
-    },
+    }
   }
 });

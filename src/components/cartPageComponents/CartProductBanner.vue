@@ -14,11 +14,15 @@
         <p class="section__text">{{product.price}}$</p>
       </div>
     </div>
+    <div class="cart-product-banner__icon icon icon-close" @click="deleteCartItem(product.id)"></div>
   </div>
 </div>
 </template>
 
 <script>
+import {mapState } from "pinia";
+import {useCartStore} from "@/store/modules/cart";
+
 export default {
   name: "CartProductBanner",
   props:{
@@ -27,8 +31,14 @@ export default {
     }
   },
   computed: {
+    ...mapState(useCartStore, ['getCartList']),
     getCurrentLanguage() {
       return this.$i18n.locale==='en' ? 'en' : 'ua'
+    }
+  },
+  methods:{
+    deleteCartItem(id){
+      this.$emit('deleteCartItem',id)
     }
   }
 };
@@ -44,7 +54,7 @@ export default {
     padding-bottom: 16px;
     border-bottom: 1px solid #b4afaf;
 
-
+    position: relative;
   }
 
   &__img {
@@ -77,6 +87,13 @@ export default {
       flex-direction: column;
       gap: 5px;
     }
+  }
+  &__icon{
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    cursor: pointer;
   }
 }
 </style>

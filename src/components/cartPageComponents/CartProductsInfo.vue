@@ -6,7 +6,7 @@
       </div>
       <div class="order-summary__main">
         <div class="order-summary__block">
-          <cart-product-banner v-for="item in combinedList" :key="item.id" :product="item" />
+          <cart-product-banner v-for="item in combinedList" :key="item.id" :product="item" @deleteCartItem="deleteCartItem"/>
         </div>
         <div class="order-summary__block order-total">
           <div class="order-total__wrapper">
@@ -63,7 +63,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(useCartStore, ["getCartList"]),
+    ...mapState(useCartStore, ["getCartList",'getCartProductByProductId']),
     ...mapState(useProductsStore, ["getProductsList"]),
     ...mapState(useSubscriptionOptionsStore, ["getSubscriptionOptionsList"]),
 
@@ -75,8 +75,17 @@ export default {
   },
   methods: {
     ...mapActions(useCartStore, { loadCartList: "loadList" }),
+    ...mapActions(useCartStore, ['deleteItem']),
     ...mapActions(useProductsStore, { loadBouquetsList: "loadList" }),
     ...mapActions(useSubscriptionOptionsStore, { loadSubscriptionOptionsList: "loadList" }),
+
+
+    deleteCartItem(id){
+      const productCartItem = this.getCartProductByProductId(id);
+      this.deleteItem(productCartItem.id)
+
+      window.location.reload()
+    },
 
 
     getFilteredList(productArray, cartList) {
@@ -145,6 +154,10 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 40px;
+
+    @media (max-width: 510px) {
+      padding: 40px 15px;
+    }
   }
 
   &__header {

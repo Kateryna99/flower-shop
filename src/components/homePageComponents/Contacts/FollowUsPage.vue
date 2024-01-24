@@ -4,7 +4,7 @@
     <div class="section__img">
       <img src="@/assets/img/home/flower_shop_img.jpg" alt="Our shop">
     </div>
-    <div class="section__content">
+    <div class="section__content section__content--row">
       <div class="follow-us-page__item">
         <h3 class="section__title section__title--small">{{ $t('pages.home.main.titles.followUsTitle')}}</h3>
       </div>
@@ -50,11 +50,16 @@ export default {
 
 <style lang="scss" scoped>
 .follow-us-page {
+
+  border-left: 1px solid #121212;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
   &__wrapper {
+
   }
-
-
-
   &__block {
   }
 
@@ -65,8 +70,13 @@ export default {
     justify-content: center;
     align-items: center;
 
-    border-left: 1px solid #121212;
-
+    @media (max-width: 1024px) {
+      padding: 25px 10px;
+    }
+    @media (max-width: 991px) {
+      border-left: 1px solid #121212;
+      border-bottom: 1px solid #121212;
+    }
   }
 }
 </style>

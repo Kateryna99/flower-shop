@@ -3,7 +3,7 @@
     <div class="pop-up__wrapper">
       <div class="pop-up__content">
         <div class="pop-up__block">
-             <slot name="title"><h2 class="section__title">{{ $t('extra.titles.thankYou')}}</h2></slot>
+             <slot name="title"><h2 class="section__title section__title--normal">{{ $t('extra.titles.thankYou')}}</h2></slot>
         </div>
         <div class="pop-up__block">
             <slot name="text"></slot>

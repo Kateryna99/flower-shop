@@ -140,7 +140,7 @@
                   <button class="quantity__button icon icon-cheveron-down" :disabled="!isInputCorrect" @click.prevent="decreaseQuantity"></button>
                 </div>
                 <div class="quantity__item">
-                  <input v-model="deliveryQuantity" readonly type="number" value="1" class="quantity__input">
+                  <input v-model="deliveryQuantity" readonly type="text" value="1" class="quantity__input">
                 </div>
                 <div class="quantity__item">
                   <button class="quantity__button icon icon-cheveron-up" @click.prevent="increaseQuantity"></button>
@@ -162,7 +162,7 @@
       <div class="section__wrapper subscription-FAQ__wrapper">
         <div class="subscription-FAQ__content">
           <div class="subscription-FAQ__header">
-            <h2 class="section__title section__title--center">{{ $t('pages.flowerSubscription.subscriptionTitles.subscriptionFAQ') }}</h2>
+            <h2 class="section__title section__title--normal section__title--center">{{ $t('pages.flowerSubscription.subscriptionTitles.subscriptionFAQ') }}</h2>
           </div>
           <div class="subscription-FAQ__main">
             <FAQItem v-for="item in getFAQList" :key="item.id" :info-obj="item"/>
@@ -179,6 +179,7 @@ import TitlePoster from "@/components/generals/TitlePoster";
 import SelectingCard from "@/components/flowerSubscription/SelectingCard";
 import { useSubscriptionOptionsStore } from "@/store/modules/subscriptions";
 import { useCartStore } from "@/store/modules/cart";
+import {useAuthStore} from "@/store/auth";
 import {useHomeStore} from "@/store/modules/general";
 import FAQItem from "@/components/flowerSubscription/FAQ/FAQItem";
 import { mapActions, mapState } from "pinia";
@@ -201,6 +202,7 @@ export default {
   },
   computed: {
     ...mapState(useSubscriptionOptionsStore, ["getSubscriptionOptionsList",'getFAQList']),
+    ...mapState(useAuthStore, ["getUser"]),
 
     isInputCorrect() {
       return this.deliveryQuantity > 1
@@ -230,9 +232,20 @@ export default {
         productId: this.subscription.subscriptionType.id
       });
 
-      this.$router.push({
-        name: "CartPage",
-      });
+      if(this.getUser){
+        this.$router.push({
+          name: "CartPage",
+        });
+      }else{
+        this.$router.push({
+          name: "LoginPage",
+          params:{
+            message: this.$i18n.t('login.message')
+          }
+        })
+      }
+
+
     }
 
   },
@@ -355,6 +368,15 @@ export default {
 .subscription-FAQ {
   &__wrapper {
     background-color: #F5F5F7;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 991px) {
+      justify-content: stretch;
+      align-items: stretch;
+    }
   }
 
   &__content {
@@ -370,7 +392,16 @@ export default {
     max-width: 60vw;
     width: 100%;
 
-    margin: 0 auto;
+    //margin: 0 auto;
+
+
+    @media (max-width: 1024px) {
+      padding: 40px;
+      gap: 20px;
+    }
+    @media (max-width: 991px) {
+      max-width: 100vw;
+    }
   }
 
   &__header {

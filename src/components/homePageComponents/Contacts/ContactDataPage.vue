@@ -1,6 +1,6 @@
 <template>
  <div class="contact-data section">
-   <div class="section__content">
+   <div class=" section__content section__content--row">
      <div class="contact-data__block">
        <div class="contact-data__header">
          <h3 class="section__title section__title--small">{{ $t('pages.home.main.titles.phoneTitle')}}</h3>
@@ -20,7 +20,7 @@
        </div>
        <div class="contact-data__main">
          <div class="contact-data__item">
-           <p class="section__subtitle">{{ $t('pages.home.main.text.workingHoursText')}}</p>
+           <p class="contact-data__hours section__subtitle">{{ $t('pages.home.main.text.workingHoursText')}}</p>
          </div>
          <div class="contact-data__item">
            <a href="https://www.google.com/maps/place/Vasagatan+17,+111+20+Stockholm/@59.3333807,18.0538869,17z/data=!3m1!4b1!4m6!3m5!1s0x465f9d60d7e6ef6b:0x55a2385c6d5531d1!8m2!3d59.333378!4d18.0564618!16s%2Fg%2F11c1zlgbw8?entry=ttu" class="contact-data__link contact-data__link--address">{{ $t('pages.home.main.text.addressText')}}</a>
@@ -85,6 +85,16 @@ export default {
       &:before{
         content: '\e920';
       }
+
+      @media (max-width: 1024px) {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__hours {
+    @media (max-width: 1024px) {
+      font-size: 13px;
     }
   }
 }

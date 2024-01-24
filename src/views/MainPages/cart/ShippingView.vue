@@ -22,21 +22,21 @@
         </div>
         <div class="form-main__block">
           <div class="form-main__item">
-            <input type="text" :placeholder="$t('pages.cart.placeholder.recipientName')" class="form-main__input">
+            <input v-model="userInfo.recipientName" type="text" :placeholder="$t('pages.cart.placeholder.recipientName')" class="input">
           </div>
           <div class="form-main__item">
-            <input type="text" :placeholder="$t('pages.cart.placeholder.recipientPhone')" class="form-main__input">
+            <input v-model="userInfo.recipientPhone" maxlength="16" pattern="+46 \d{2} \d{2} \d{2} \d{3}" type="text" :placeholder="$t('pages.cart.placeholder.recipientPhone')" class="input" @click="handleInputClick">
           </div>
           <div class="form-main__item form-main__item--row">
-            <input type="text" :placeholder="$t('pages.cart.placeholder.street')" class="form-main__input">
-            <input type="text" :placeholder="$t('pages.cart.placeholder.apartment')" class="form-main__input">
+            <input v-model="userInfo.recipientStreet" type="text" :placeholder="$t('pages.cart.placeholder.street')" class="input">
+            <input v-model="userInfo.recipientApartment" type="text" :placeholder="$t('pages.cart.placeholder.apartment')" class="input">
           </div>
         </div>
         <div class="form-main__block">
           <router-link :to="{
             name: 'CartPayment',
           }">
-            <button class="button">{{ $t('buttons.continue') }}</button>
+            <button class="button" :disabled="!isInputEmpty" :class="{'button--disabled':!isInputEmpty}">{{ $t('buttons.continue') }}</button>
           </router-link>
         </div>
       </div>
@@ -55,9 +55,61 @@
 <script>
 
 import CartFormItem from "@/components/cartPageComponents/CartFormItem";
+import { mapState,mapActions } from "pinia";
+import { useCartStore } from "@/store/modules/cart";
 export default {
   name: "ShippingView",
-  components: { CartFormItem, }
+  components: { CartFormItem, },
+  data() {
+    return {
+      userInfo: {},
+    }
+  },
+  computed: {
+    ...mapState(useCartStore, ["getUserInfo"]),
+
+    isInputEmpty() {
+      return this.userInfo.recipientName && this.userInfo.recipientPhone && this.userInfo.recipientStreet && this.userInfo.recipientApartment;
+    }
+  },
+  methods: {
+    ...mapActions(useCartStore, ["setUserInfo"]),
+
+    handleInputClick() {
+      this.userInfo.number = '+46 ';
+    }
+  },
+  watch:{
+    'userInfo.recipientName'(newValue){
+      const formattedName = newValue.charAt(0).toUpperCase() + newValue.slice(1);
+
+      this.userInfo = { ...this.userInfo, recipientName: formattedName };
+
+      this.setUserInfo('recipientName', formattedName);
+    },
+    'userInfo.recipientPhone'(newValue){
+      const strippedNumber = newValue.replace(/\D/g, "");
+      const formattedNumber = strippedNumber.replace(/(\d{2})(?=\d)/g, "$1 ");
+
+      if (strippedNumber.startsWith("46")) {
+        this.userInfo = { ...this.userInfo, recipientPhone: "+" + formattedNumber };
+      } else {
+        this.userInfo = { ...this.userInfo, recipientPhone: formattedNumber };
+      }
+      this.setUserInfo('recipientPhone', newValue);
+    },
+    'userInfo.recipientStreet'(newValue){
+      this.setUserInfo('recipientStreet', newValue);
+    },
+    'userInfo.recipientApartment'(newValue){
+      this.setUserInfo('recipientApartment', newValue);
+    }
+  },
+  created() {
+    if(this.getUserInfo){
+      this.userInfo = this.getUserInfo
+    }
+  },
 };
 </script>
 

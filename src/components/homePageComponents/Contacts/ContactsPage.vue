@@ -14,7 +14,7 @@
                 <div class="contact-form__block">
                   <div class="contact-form__item">
                     <input v-model="phoneNumber" type="text" maxlength="16" pattern="+46 \d{2} \d{2} \d{2} \d{3}"
-                           placeholder="+46 XX XX XX XXX" class="contact-form__input" @click="handleInputClick"
+                           placeholder="+46 XX XX XX XXX" class="input" @click="handleInputClick"
                            required>
                   </div>
                   <div class="contact-form__item">
@@ -27,7 +27,7 @@
         </title-poster>
         <contact-data-page/>
       </div>
-      <div class="contacts-page__block">
+      <div class="contacts-page__follow">
         <follow-us-page/>
       </div>
       <teleport to="body">
@@ -72,6 +72,8 @@ export default {
       setTimeout(() => {
         this.popUpShow = false;
       }, 4000)
+
+      this.phoneNumber = '';
     },
     closePopupOnClick(event) {
       if (event.target.classList.contains('pop-up')) {
@@ -124,11 +126,6 @@ export default {
   }
 
   &__text {
-  }
-
-  &__input {
-    border: 1px solid #D2D2D7;
-    padding: 16px;
   }
 }
 
