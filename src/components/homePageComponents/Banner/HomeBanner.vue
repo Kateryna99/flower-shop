@@ -38,7 +38,7 @@ export default {
     flex-direction: column;
     gap: 24px;
 
-    height: 100%;
+    //height: 100%;
   }
 
   &__block {

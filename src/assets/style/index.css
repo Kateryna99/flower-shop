@@ -844,11 +844,6 @@ body {
 .admin__icon:hover {
   transform: scale(1.1);
 }
-
-.icon-close {
-  color: red;
-}
-
 .icon-pencil {
   color: #4285f4;
 }

@@ -1045,12 +1045,16 @@ $whiteMain: #FFFFFF;
     &:hover {
       transform: scale(1.1);
     }
+
+    &:first-child {
+
+    }
   }
 }
 
 
 .icon-close {
-  color: red;
+
 }
 
 .icon-pencil {
