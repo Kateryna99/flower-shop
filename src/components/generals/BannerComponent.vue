@@ -27,7 +27,9 @@ export default {
 <style lang="scss" scoped>
 .category-banner {
   &__wrapper {
-    height: 100vh;
+    min-height: 100vh;
+    height: 1px;
+
     position: relative;
 
     background-size: cover;
@@ -53,7 +55,7 @@ export default {
     @media (max-width: 991px) {
       border-bottom: 1px solid #121212;
 
-      height: 50vh;
+      min-height: 50vh;
     }
   }
 

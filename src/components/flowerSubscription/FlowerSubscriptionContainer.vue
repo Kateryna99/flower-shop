@@ -4,10 +4,10 @@
       <div class="flower-subscription__content">
         <banner-component :banner="{
           imgUrl: require('@/assets/img/flower_subscription/banner.jpg'),
-        }"></banner-component>
+        }" class="section__block"></banner-component>
       </div>
       <div class="flower-subscription__content">
-        <title-poster :title="$t('mainTitles.flowerSubscription')" class="section__block">
+        <title-poster :title="$t('mainTitles.flowerSubscription')">
           <template #main>
             <div class="flower-subscription__main section__main">
               <div class="flower-subscription__block">
