@@ -466,6 +466,11 @@ body {
 .section__text--width {
   max-width: 600px;
 }
+@media (max-width: 768px) {
+  .section__text {
+    font-size: 16px;
+  }
+}
 .section__title {
   font-size: 50px;
   font-weight: 600;
@@ -631,6 +636,11 @@ body {
 @media (max-width: 991px) {
   .category-card__banner {
     border-bottom: 1px solid #121212;
+  }
+}
+@media (max-width: 480px) {
+  .category-card__banner {
+    padding: 15px;
   }
 }
 .category-card__block {

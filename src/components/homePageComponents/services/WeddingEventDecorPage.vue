@@ -38,7 +38,7 @@ export default {
   &__wrapper {
     padding: 80px;
 
-    height: 100vh;
+    min-height: 100vh;
 
     background-image: url("@/assets/img/home/wedding_event.jpg");
     background-position: center;
@@ -59,6 +59,10 @@ export default {
 
       background-color: rgba(0, 0, 0, 0.5);
     }
+
+    @media (max-width: 768px) {
+      padding: 40px 15px;
+    }
   }
 
   &__content {
@@ -67,6 +71,10 @@ export default {
   &__text {
     max-width: 650px;
     width: 100%;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
   }
 }
 

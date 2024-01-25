@@ -74,6 +74,10 @@ export default {
       display: flex;
       justify-content: flex-start;
       align-items: end;
+
+      @media (max-width: 991px) {
+        align-items: start;
+      }
     }
   }
 
