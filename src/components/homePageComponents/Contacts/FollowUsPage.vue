@@ -4,7 +4,7 @@
     <div class="section__img">
       <img src="@/assets/img/home/flower_shop_img.jpg" alt="Our shop">
     </div>
-    <div class="section__content section__content--row">
+    <div class="section__content ">
       <div class="follow-us-page__item">
         <h3 class="section__title section__title--small">{{ $t('pages.home.main.titles.followUsTitle')}}</h3>
       </div>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+//section__content--row
 export default {
   name: "FollowUsPage"
 }

@@ -354,7 +354,6 @@ export default {
       this.menuShow = false
     },
     closeMenuOnClick(event){
-      console.log(event.target)
       if (event.target.classList.contains('nav-menu')) {
         this.closeMenu()
       }

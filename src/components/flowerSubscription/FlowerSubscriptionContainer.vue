@@ -226,6 +226,8 @@ export default {
       this.selecting[nextStep] = true;
     },
     sendToCartPage() {
+
+      console.log(this.subscription)
       this.addItem({
         productQuantity: this.deliveryQuantity,
         frequency: this.subscription.frequency,

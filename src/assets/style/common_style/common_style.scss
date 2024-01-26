@@ -597,7 +597,7 @@ $whiteMain: #FFFFFF;
     }
 
     @media (max-width: 991px) {
-      height: 50vh;
+      min-height: 50vh;
     }
   }
 
@@ -852,6 +852,21 @@ $whiteMain: #FFFFFF;
       gap: 16px;
 
       padding: 80px;
+      
+      @media (max-width: 1024px) {
+        padding: 65px;
+      }
+      @media (max-width: 991px) {
+        padding: 40px 15px;
+      }
+    }
+  }
+
+  &--column{
+    .category-card__wrapper {
+       @media (max-width: 768px) {
+         flex-direction: column;
+       }
     }
   }
 

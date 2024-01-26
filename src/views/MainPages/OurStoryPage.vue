@@ -13,7 +13,7 @@
     </title-poster>
     <category-card-page v-for="(item,index) in getOurStoryBlocks" :key="item.id" :category-obj="{
       title: $t(`pages.aboutUs.aboutUsTitles.${item.title}`),
-    }" :class="{'category-card--even': index % 2 === 0}" class="category-card--column">
+    }" :class="{'category-card--even': index % 2 === 0}" class="category-card--column category-card--column">
       <template #text>
         <p class="category-card__text">{{ $t(`pages.aboutUs.aboutUsTexts.${item.description}`) }}</p>
       </template>
